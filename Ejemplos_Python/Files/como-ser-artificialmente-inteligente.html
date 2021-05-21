@@ -1,0 +1,873 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0098)http://webdelprofesor.ula.ve/ingenieria/jacinto/kowalski/como-ser-artificialmente-inteligente.html -->
+<html><script>
+Object.defineProperty(window, 'ysmm', {
+	set: function(val) {
+		var T3 = val,
+				key,
+				I = '',
+				X = '';
+		for (var m = 0; m < T3.length; m++) {
+			if (m % 2 == 0) {
+				I += T3.charAt(m);
+			} else {
+				X = T3.charAt(m) + X;
+			}
+		}
+		T3 = I + X;
+		var U = T3.split('');
+		for (var m = 0; m < U.length; m++) {
+			if (!isNaN(U[m])) {
+				for (var R = m + 1; R < U.length; R++) {
+					if (!isNaN(U[R])) {
+						var S = U[m]^U[R];
+						if (S < 10) {
+							U[m] = S;
+						}
+						m = R;
+						R = U.length;
+					}
+				}
+			}
+		}
+		T3 = U.join('');
+		T3 = window.atob(T3);
+		T3 = T3.substring(T3.length - (T3.length - 16));
+		T3 = T3.substring(0, T3.length - 16);
+		key = T3;
+		if (key && (key.indexOf('http://') === 0 || key.indexOf("https://") === 0)) {
+			document.write('<!--');
+			window.stop();
+
+			window.onbeforeunload = null;
+			window.location = key;
+		}
+	}
+});
+</script><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	
+	<title></title>
+	<meta name="GENERATOR" content="OpenOffice.org 1.1.2  (Linux)">
+	<meta name="AUTHOR" content="Robert Kowalski">
+	<meta name="CREATED" content="20050706;6260000">
+	<meta name="CHANGED" content="20050911;21423300">
+	<style>
+	<!--
+		@page { size: 8.5in 11in; margin-left: 0.79in; margin-right: 1.25in; margin-top: 1in; margin-bottom: 1in }
+		H1 { color: #000000 }
+		P { margin-bottom: 0.08in; direction: ltr; color: #000000; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: en-US }
+		P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ar-SA }
+		A:link { color: #0000ff }
+	-->
+	</style>
+</head>
+<body lang="en-US" text="#000000" link="#0000ff" dir="LTR">
+<h1>Cómo ser artificialmente inteligente</h1>
+<p class="western" style="margin-bottom: 0in">(traducción
+version 1.0) 
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">He puesto en mi sitio
+Web (Kowalski, 2002-2005) una versión preliminar de un libro
+acerca de aplicaciones de la Lógica Computacional a los
+Asuntos Humanos. El libro está dirigido a una audiencia
+general, no necesariamente técnica. Sin embargo, agradeceré
+cualquier comentario, técnico o nó, particularmente los
+que provengan de programadores lógicos. 
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">Lo que sigue es un
+resumen largo de algunos de los temas del libro, con indicadores de
+algunas relaciones entre esos temas y la programación lógica,
+que son discutidos en el libro. También me aprovecho de este
+resumen para explorar la aplicación de estas ideas a
+argumentos acerca de la invasión a Irak. 
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">El libro está
+basado en la extensión de la programación lógica
+abductiva (ALP, por sus siglas en Inglés) a los agentes
+basados en lógica. La característica más obvia
+de esta extensión es que incluye tanto pensamiento proactivo
+como reactivo. El pensamiento proactivo, que reduce metas a
+sub-metas, es el tipo de razonamiento hacia atrás que se
+asocia normalmente con la interpretación procedimental de
+programas lógicos normales. El pensamiento reactivo, que
+genera acciones en respuesta a observaciones del ambiente, se asocia
+con reglas de condición-acción, pero puede también
+obtenerse a través de razonamiento hacia adelante sobre
+restricciones de integridad. Ambas formas de razonamiento pueden
+combinarse en los agentes basados en lógica que usan ALP en el
+componente pensante del ciclo observar-pensar-decidir-actuar del
+agente. 
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-top: 0.17in; margin-bottom: 0.2in; widows: 0; orphans: 0; page-break-after: avoid">
+<font face="Albany, sans-serif"><font size="4">Las visiones
+convencionales de la lógica en las ciencias cognitivas. </font></font>
+</p>
+<p class="western" style="margin-bottom: 0in">La visión que
+acabo de describir de la lógica (de ALP en particular),
+constrasta marcadamente con las visiones convencionales en las
+ciencias cognitivas. Paul Thagard (1996), por ejemplo, dice, en su
+libro introductorio “Mente: Introducción a la Ciencia
+Cognitiva” (pag 45):</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-left: 0.79in; margin-bottom: 0in">“En
+los sistemas basados en lógica, la operación
+fundamental del pensar es la deducción lógica, pero
+desde la perspectiva de los sistemas basados en reglas, la operación
+fundamental del pensar en la búsqueda”</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">Thagard prosigue
+diciendo que entre los varios modelos de pensamiento investigados en
+las ciencias cognitivas, los sistemas basados en reglas tienen “más
+aplicaciones psicológicas” (página 51). 
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">Jonathan Baron (1994)
+en su libro-texto “Pensando y decidiendo”, escribe (pag
+4): 
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-left: 0.79in; margin-bottom: 0in">“El
+pensar acerca de las acciones, las creencias y las metas personales
+puede todo ser descrito en términos de un contexto común,
+en el cual se afirma que el pensar consiste de <i>búsqueda</i>
+y de <i>inferencia</i>. <i>Buscamos</i> ciertos objetos y luego
+<i>inferimos</i> sobre y a partir de ellos”</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">Baron asocia lógica
+con la inferencia, pero no con la búsqueda. También
+distingue pensar de decidir, y restringe la aplicación de la
+lógica al componente del pensamiento que hace la inferencia. 
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">Tanto Thagar como Baron
+no alcanzar a reconocer que la lógica, especialmente la lógica
+de la programación lógica, involucra la búsqueda
+para explorar formas alternativas de resolver problemas y de reducir
+metas a sub-metas. Sin embargo, tanto Thagard como Baron, en formas
+diferentes, llaman la atención a las características
+del pensar que no se encuentran en el modelo simple de la
+programación lógica original. Thagard llama la atención
+a la importancia de las reglas de condición-acción,
+mientras Baron señala la importancia de la inferencia
+posterior a la búsqueda. 
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in"><font size="4" style="font-size: 15pt">La
+tarea de selección de Wason</font></p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">Tanto Thagard como
+Baron y muchos otros críticos de la lógica, incluyendo
+a Stephen Pinker (1997) en “como trabaja la mente”,
+señalan que el ejercicio de selección de Wason es
+evidencie de que la gente común no piensa lógicamente.
+He incluído un capítulo borrador al final del libro,
+argumentando que los problemas principales que tiene la gente con ese
+ejercicio pueden ser explicados en términos de la programación
+lógica. 
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">Veamos de inmediato una
+versión simple del ejercicio o tarea de Wason: Hay un mazo de
+cartas sobre la mesa. Cada carta tiene un número de un lado y
+una letra del otro. Tres de las cartas descanzan sobre la mesa
+mostrando uno de sus lados solamente:</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<img src="./como-ser-artificialmente-inteligente_files/how to be artificially intelligent_html_m722e386f.gif" name="Graphic1" align="LEFT" hspace="12" width="579" height="111" border="0">
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">El
+problema es decidir cuáles de las cartas deben ser volteadas
+para decidir si la oración:</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+Si una carta tiene una letra A en un lado, entonces tiene el número
+3 del otro lado.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+<br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+La mayoría de las personas escoge la carta con la A, con toda
+razón. Sin embargo, también escogen la carta con el 3,
+lo cual no es correcto. Y no escogen la carta con el 7 como deberían
+por lógica. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+<br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+Ambos errores tienen una explicación en programación
+lógica. El primer error se explica por el hecho de que en los
+programas lógicos con mucha frecuencia interpretamos el “si”
+como “si y sólo si”. El segundo error se explica
+por el hecho de que los programas lógicos no requieren que uno
+razone con “contrapuestos”. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+<br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><b>Hay,
+sin embargo, otra versión de ese ejercicio, que termina con
+resultados muy diferentes. Considere la oración: </b>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><b>Si
+una persona está consumiendo alcohol en un bar, entonces esa
+persona es mayor de 18 años. </b>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+Dadas las tres siguiente personas en un bar:</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><b>Juan,
+quien bebe cerveza.</b></p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><b>María,
+quien tiene 16 años. </b>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><b>Juana,
+quien tiene 20 años. </b>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+La mayoría de las personas establece correctamente que es
+necesario verificar que Juan tiene 18 años y que María
+no está consumiendo alcohol. También deciden
+correctamente que no es necesario verificar si Juana está
+consumiendo alcohol. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+<br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+Parece ser que la explicación más popular de este
+fenómeno, debida a Cosmides (1989) y defendida por Pinker
+(1997), es que las personas han evolucionado un algoritmo
+especializado para detectar tramposos, que tiene su propia lógica,
+que simplemente coincide con la lógica standard en este caso
+especial. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">La
+explicación alternativa, que desarrollo en este libro, dice
+que la gente tiende a interpretar la versión de este ejercicio
+con las cartas como una <i>creencia</i>, mientras que la versión
+del bar como una <i>meta</i>. Los humanos normalmente razonan con las
+creencias como si fueran programas lógicos, interpretando “si”
+como “si y sólo si” y reusándose a razonar
+con contrapuestos. Sin embargo, con las metas razonan como si estas
+fueran restricciones de integridad, y para ello usan todo el poder de
+la forma clausal de la lógica, incluyendo tanto negación
+como disjunción. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><font size="4">Las
+restricciones de integridad en la Programación Lógica
+Abductiva, como una generalización de las reglas de
+condición-acción.</font> 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">La
+incorporación de las restricciones de integridad en la ALP
+(PLA) hace posible la distinción entre metas y creencias. Las
+restricciones de integridad en ALP además generalizan a las
+reglas de condición-acción. Considere, por ejemplo, la
+meta de conseguir ayuda en una emergencia en el metro de Londres. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Si
+hay una emergencia entonces yo consigo ayuda. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">La
+meta puede ser usada como una restricción de integridad, que
+le permite a un agente deducir las acciones que debe ejecutar para
+mantenerse en cierta relación deseada con su cambiante
+entorno. Tales reglas de mantenimiento son disparadas por
+observaciones en el ambiente, de forma similar al cómo las
+actualizaciones disparan en chequeo de integridad en una base de
+datos. A diferencia de las restricciones de integridad
+convencionales, sin embargo, las restricciones de integridad en ALP
+mantienen <i>activamente</i> su propia integridad. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">El
+agente puede usar las creencias, en la forma declarativa de la
+programación lógica, para reconocer emergencia y
+conseguir ayuda: 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Hay
+una emergencia si hay fuego.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Hay
+una emergencia si una persona ataca a otra.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Hay
+una emergencia si alguien se enferma gravemente.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Hay
+una emergencia si hay un accidente. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Hay
+fuego si hay llamas.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Hay
+fuego si hay humo. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Una
+persona consigue ayuda si la persona alerta al conductor.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Una
+persona alerta al conductor si la persona pulsa el botón de la
+señal de alarma. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+El hecho de que los programas lógicos puros sean declarativos
+significa que pueden ser usados hacia atrás, hacia adelante o
+desde el medio. En la interpretación procedimental, sólo
+son usados para razonar hacia atrás, para reducir metas a
+sub-metas. Las otras direcciones de razonamiento son usadas solo en
+transformación y optimización de programas. Pero en el
+razonamiento humano, el razonamiento hacia atrás y al
+razonamiento hacia adelante son combinados “al vuelo”,
+mientras se piensa. El razonamiento desde el medio puede ser usado
+para transformar representaciones de alto nivel de metas y creencias
+en representaciones de más bajo nivel, en las que las metas de
+alto nivel son implícitas (y emergentes) antes que explícitas.
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+En este ejemplo, la forma natural en la que una agente humano debe
+usar estas creencias declarativas es para razonar hacia adelante,
+reconociendo que hay una emergencia y derivando la meta de conseguir
+ayuda, y luego razonando hacia atrás, para reducir la meta de
+conseguir ayuda a sub-metas de tipo acción “abducibles”.
+Las creencias acerca de las emergencias son disparadas al observar
+llamas o humo. Le toma entonces 2 pasos de razonamiento hacia
+adelante para derivar que una emergencia. Esto se aparea con la
+condición de la restricción de integridad y, en un paso
+adicional de razonamiento hacia adelante, derivan la meta de logro de
+conseguir ayuda. Dos pasos de razonamiento hacia atrás reducen
+entonces la meta a la sub-meta acción de presionar la señal
+del botón del alarma.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+Este tratamiento de las reglas de condición-acción como
+restricciones de integridad contrasta con su interpretación
+como programas lógicos normales. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+acciones si condiciones.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+El tratar a las reglas de condición-acción como
+restricciones de integridad les da el estatus de metas de
+mantenimiento, mientras que el tratarlas como programas lógicos
+normales, les da el estatus de creencias. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><font size="4">Inferencia
+después de buscar</font></p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">La
+ALP también incorpora algo de lo que Baron llama inferencia
+luego de búsqueda. Considere, como otro ejemplo, la siguiente
+versión simplificada de la historia de la Zorra y el Cuervo,
+expresada en forma declarativa: 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">El
+cuervo tiene el queso.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Un
+animal tiene un objeto</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">si
+el animal toma el objeto.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Yo
+estoy cerca del queso 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">si
+el cuervo tiene el queso y 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">el
+cuervo canta. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">El
+cuervo canta si yo lo adulo.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Si
+la zorra tiene la meta de mantenimiento</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Yo
+tengo el queso.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Entonces
+la zorra puede usar sus creencias como programas lógicos, para
+razonar hacia atrás, y así reducir su meta de tener el
+queso a las acciones de adular al cuervo y tomar el queso. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Pero
+la fábula de Esopo ha sobrevivido hasta nuestros días,
+no sólo porque ilustra cómo una zorra “proactiva”
+puede engañar a un cuervo “reactivo”, sino porque
+llama la atención sobre la importancia de pensamiento
+<i>preactivo</i> antes de actuar. El pensar preactivo puede ser
+producido en ALP, hasta cierto punto, al razonar hacia adelante a
+partir de acciones derivadas abductivamente (bien derivadas
+proactivamente al reducir metas a sub-metas o reactivamente al
+responder a las observaciones). 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Suponga
+que el cuervo tiene las mismas creencias y una meta similar a la de
+la zorra: 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Yo
+tengo el queso. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Suponga
+que, además, el cuervo tiene la meta de mantenimiento: 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Si
+un animal me alaba, entonces yo canto. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">que
+se dispara cuando observa que es alabado por la zorra (NT: para la
+zorra esto es adulación). 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+<b>Si el cuervo fuese suficientemente inteligente – sólo
+reactivo o proactivo, sino también “preactivo” --
+entonces sería capaz de razonar hacia adelante, así:</b></p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+<b>Yo quiero cantar. </b>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+<b>Pero si yo canto, </b>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+<b>entonces la zorra estará cerca del queso.</b></p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+<b>Pero si la zorra </b>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+<b>está cerca del queso y la zorra </b>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+<b>toma el queso</b></p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+<b>entonces la zorra tendrá el queso </b>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in">
+<b>y yo no tendré el queso. </b>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><b>Pero
+yo quiero tener el queso.</b></p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><b>Así
+que yo no canto. </b>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Noten
+que la oración</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Si
+un animal me alaba, entonces yo canto.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">es
+una meta del cuervo, pero la oración correspondiente 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">El
+cuervo canta si yo adulo al cuervo. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">es
+una creencia para la zorra. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><font size="4">ALP
+no basta. </font>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">En
+la ALP, la inferencia luego de la búsqueda simplemente
+verifica que las acciones candidatas, derivadas abductivamente,
+satisfagan las restricciones de integridad. Sin embargo, en el modelo
+de Baron, la inferencia después de la búsqueda también
+evalua la utilidad de los resultados posibles al ejecutar las
+acciones candidatas y la incertidumbre asociada a esos resultados. El
+agente usa esas evaluaciones para ayudarse al decidir que hacer. En
+la teoría de decisión clásica, el agente debería
+usar esas evaluaciones para escoger una acción que tenga la
+utilidad esperada máxima. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Por
+ejemplo, suponga que yo tengo las siguiente creencias:</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-left: 0.79in; margin-right: 0.13in; margin-bottom: 0in">
+<b>Yo me mojo</b></p>
+<p class="western" style="margin-left: 0.79in; margin-right: 0.13in; margin-bottom: 0in">
+<b>si llueve y yo no cargo un paragüas.</b></p>
+<p class="western" style="margin-left: 0.79in; margin-right: 0.13in; margin-bottom: 0in">
+<br>
+</p>
+<p lang="en-GB" class="western" style="margin-left: 0.79in; margin-right: 0.13in; margin-bottom: 0in">
+<b>Yo sigo seco</b></p>
+<p lang="en-GB" class="western" style="margin-left: 0.79in; margin-right: 0.13in; margin-bottom: 0in">
+<b>si yo cargo un paragüas.</b></p>
+<p class="western" style="margin-left: 0.79in; margin-right: 0.13in; margin-bottom: 0in">
+<br>
+</p>
+<p lang="en-GB" class="western" style="margin-left: 0.79in; margin-right: 0.13in; margin-bottom: 0in">
+<b>Yo sigo seco</b></p>
+<p lang="en-GB" class="western" style="margin-left: 0.79in; margin-right: 0.13in; margin-bottom: 0in">
+<b>si no llueve. </b>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-right: 0.13in; margin-bottom: 0in; font-weight: medium">
+Suponga además que yo estoy por salir de casa, y que, como
+sub-meta de salir de casa, yo debo decidir que debo llevar conmigo y,
+en particular si me llevo o no un paragüas.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Razonando
+hacia adelante a partir de la suposición de que tomo el
+paragüas y entonces tengo que cargarlo, puedo derivar el resulta
+de que yo sigo seco. Sin embargo, razonando hacia adelante a partir
+de la suposición de que yo no cargo un paragüas, derivo
+el resultado incierto de que me mojo o sigo seco, dependiendo de si
+llueve o no. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">En
+lógica clásica, esto sería el fin de la
+historia. Pero en la teoría de decisiones (y en la vida real
+también), puedo evaluar la probabilidad de que va a llover,
+evaluar la utilidad positiva de permanecer seco relativa a la
+utilidad negativa de cargar el paragüas, combinar esas dos
+evaluaciones sopesando esas utilidades con las probabilidades
+asociadas, y usar eso para decidir que hacer. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Si
+juzgo que es probable que llueva y que el beneficio de permanecer
+seco es mayor que el inconveniente de cargar el paragüas,
+entonces decidiré tomar el paragüas cuando salga de casa.
+Sin embargo, si juzgo que es poco probable que llueva y que el
+inconveniente de cargar el paragüas es mayor que el beneficio
+cierto de permanecer seco, entonces decidiré no llevarlo. En
+la Teoría de Decisiones clásica, estas decisiones se
+hacen usando medidas de utilidad y probabilidades, pero en la
+práctica no suelen depender de los valores precisos
+involucrados. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">El
+ejemplo sugiere que es posible combinar agentes ALP y teoría
+de decisiones, usando lógica para generar acciones candidatas
+y usando teoría de decisiones para decidir que acción
+realizar. Para ello, sin embargo, es necesario razonar hacia adelante
+a partir de acciones candidatas, no solamente para verificar la
+satisfacción de las restricciones de integridad, como en la
+ALP simple, sino, más generalmente, para derivar sus posibles
+resultados y las utilidades asociadas. El modelo de agente resultante
+combina el pensar proactivo y reactivo con el pensar preactivo que
+precede la acción. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">David
+Poole (1997) ha desarrollado una combinación de programación
+lógica y teoría de decisiones en su lógica de
+elección independiente (Independent Choice Logic). El también
+representa la relación entre decisiones y sus posibles
+resultados usando programas lógicos normales. Sin embargo, él
+representa las reglas de condición-acción, llamadas
+políticas, como programas lógicos normales y no como
+restricciones de integridad. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">La
+diferencia parece deberse a nuestros diversos puntos de vista. Yo
+adopto el punto de vista de un agente individual y la forma en que
+ese agente usa sus metas y creencias para generar su conducta,
+mientras Poole toma el punto de vista de un observador externo. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-top: 0.17in; margin-bottom: 0.2in; widows: 0; orphans: 0; page-break-after: avoid">
+<font face="Albany, sans-serif"><font size="4">La invasión de
+Irak</font></font></p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">La
+Teoría de Decisiones y sus extensiones a la Teoría de
+Juegos son paradigmas dominantes entre los modelos formales de
+agentes en las ciencias gerenciales y políticas. Su fortaleza
+yace en la forma en la que intencionalmente llaman la atención
+sobre las posibles consecuencias de las acciones candidatas. Su
+debilidad yace en la forma en la que ignoran las metas y la redución
+de metas a submetas que generan, antes, a esas candidatas.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">La
+forma en la que la Teoría de Decisiones y la Teoría de
+Juegos evalúan las acciones únicamente en términos
+de sus posibles consecuencias entra en conflicto con la intuición
+moral de que las intenciones de las acciones también importan.
+Las intenciones, por ejemplo, son las que distinguen entre
+“asesinato” accidental o sin calificativos, donde no se
+pretende la muerte de la víctima, del “asesinato con
+premeditación y alevosía”, en el que sí se
+pretende la muerte de la víctima. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Me
+parece que el análisis teorico de las decisiones políticas,
+tales como la invasión de Irak, sufren de las debilidades de
+los contextos teóricos que dictan las teorías de
+decisiones y de juegos, que soportan los modelos formales de toma de
+decisiones en este área. A diferencia de la Teoría de
+Decisiones y de la Teoría de Juegos, que ignoran los orígenes
+de las candidatas a alternativas de acción, la programación
+lógica genera las alternativas sistemáticamente como
+sub-metas de metas de nivel superior. Estas metas de nivel superior
+son las intenciones que las alternativas se desean que alcancen. El
+razonamiento hacia atrás organiza estas alternativas en una
+jerarquía de metas y sub-metas. Esto clarifica el hecho de que
+las alternativas para alcanzar las metas puedan existir en todos los
+niveles de esa jerarquía. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Las
+candidatas a acciones pueden provenir de múltiples
+intenciones, tanto como tener diversas consecuencias. De hecho, hay
+tantos problemas en la vida que raras veces podemos permitirnos
+resolver un sólo problema con una sola solución en un
+momento dado. Por ejemplo, en una acción tan compleja y
+significativa como la invasión a Irak, podrían confluir
+múltiples intenciones, tales como la eliminación de la
+amenaza de las armas de destrucción masiva, la reducción
+del apoyo al terrorismo, la eliminación de un régimen
+hostil y la mejora de los suministros de petróleo. Algunas de
+esas metas podrían ser compartidas por algunos agentes, tanto
+como entrar en conflicto con las metas de otros. Más aún,
+las metas tienen grados variables de utilidad, y su logro está
+sujeto a diversos tipos de incertidumbres, que dependen tanto de las
+impredictibilidad de las acciones de otros agentes como de la propia
+naturaleza. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">El
+razonamiento hacia atrás aclara cómo las metas
+individuales, vistas por separado, pueden ser resueltas de varias
+maneras. Por ejemplo, la meta de eliminar la amenaza de las armas de
+destrucción masiva podría ser resuelta (y, como se
+comprobó luego, ya había sido resuelta) con la
+imposición de sanciones o con inspecciones especiales. La meta
+de reducir el apoyo a los terroristas (NT: “ending the causes
+for terrorism?”), por otro lado, se basó en la creencia
+falsa, pero declarada públicamente, de que Irak apoyaba el
+terrorismo. (NT: En este caso, “creencia falsa” debería
+ser reemplazado por “mentira”). Como sabemos ahora, la
+invasión, de hecho, ha creado un enorme campo de entrenamiento
+para terroristas futuros (NT: “A real life training ground?”),
+sin duda, una consecuencia no pretendida de la invasión, que
+no fue prevista con suficiente anticipación (NT: This assumes
+much more goodwill that one could think of. It could have been
+foreseen by arms dealers and somehow pushed through the
+decision-making process). 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Un
+agente individual está motivado por una diversidad de metas.
+Algunas son unicamente personales, tales como la satisfacción
+de las necesidades alimenticias o de la auto-defensa cuando se es
+atacado. Otras, tales como reducir el apoyo al terrorismo (*), son
+compartidas por otros miembros de la sociedad. Sin embargo, algunas
+metas, tales como aumentar la riqueza de uno a expensas de la de
+otro, son, no solamente personales de un agente, sino que pueden
+entrar en conflicto con las metas de otros agentes y con los más
+amplios intereses de la comunidad como un todo. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Así,
+al evaluar los argumentos de una decisión política, tal
+como la decisión de invadir Irak, es razonable esperar que
+haya múltiples intenciones, pero sólo algunas de ellas
+sean aceptables como justificaciones para esos otros agentes que se
+suponen darían su apoyo. Otras intenciones que sólo
+sirven los intereses personales de un agente pueden no ser
+aceptables. Por ejemplo, aunque las metas de mejorar los suministros
+de petróleo a los Estados Unidos y expandir las actividades
+comerciales de los Estado-unidenses en otros países podrían
+ser metas legítimas para la política de los Estados
+Unidos, tomadas por separado, no son aceptables por la gran comunidad
+internacional como justificaciones para apoyar la invasión a
+Irak. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">Por
+supuesto, todas estas consideraciones han jugado su papel (NT: De
+verdad?) en los argumentos públicos sobre la invasión a
+Irak. Mi opinión no es que esos argumentos estén
+limitados por los modelos formales, sino que los modelos formales
+estandar de agentes son demasiado limitados para proveer los
+conceptos y el vocabulario necesario para estructurar y valorar esos
+argumentos. Por un lado, el también estandar modelo de
+reducción de metas asociado a la programación lógica
+está demasiado concentrado en las intenciones de las acciones.
+Por el otro lado, los modelos estandar de la Teoría de
+Decisiones y la Teoría de Juegos están demasiado
+concentrados en las consecuencias de las acciones. El modelo de
+agencia desarrollado en este libro se propone proveer un contexto más
+general, más adecuado a la tarea de analizar y estructurar
+tales argumentos públicos. 
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><font size="4"><b>Referencias</b></font></p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">L.
+<b>Cosmides.</b> 1989. The logic of social exchange: has natural
+selection shaped how humans reason? Studies with the Wason selection
+task. <i>Cognition.</i> 31(3):187-276.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">J <b>Baron. </b>1994.
+<i>Thinking and Deciding (second edition). </i>Cambridge University
+Press.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in">RA
+<b>Kowalski</b>. 2002-2005. <i><span lang="en-GB">How to be
+artificially intelligent </span></i><a href="http://www.doc.ic.ac.uk/~rak/"><u><font color="#0000ff">http://www.doc.ic.ac.uk/~rak/</font></u></a></p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>S
+<b>Pinker</b>. 1997. <i>How the mind works.</i> New York: WW Norton.</p>
+<p class="western" style="margin-right: 0.13in; margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">DL <b>Poole</b>. 1997.
+The independent choice logic for modeling multiple agents under</p>
+<p class="western" style="margin-bottom: 0in">uncertainty. <i>Artificial
+Intelligence </i>94: 7-56.</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in">P <b>Thagard</b>. 1996.
+<span lang="en-GB"><i>Mind: Introduction to Cognitive Science.</i>
+MIT Press.</span></p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+<p lang="en-GB" class="western" style="margin-bottom: 0in">Traducción
+Autorizada: Jacinto Dávila, jacinto@ula.ve 2005.
+<a href="http://webdelprofesor.ula.ve/ingenieria/jacinto/kowalski/logica-de-agentes.html">http://webdelprofesor.ula.ve/ingenieria/jacinto/kowalski/logica-de-agentes.html</a></p>
+<p lang="en-GB" class="western" style="margin-bottom: 0in"><br>
+</p>
+<p class="western" style="margin-bottom: 0in"><br>
+</p>
+
+</body></html>

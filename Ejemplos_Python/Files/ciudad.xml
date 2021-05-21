@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<results>
+    <pais nombre="Colombia" clima="Tropical" capital="Bogota" codigo="CO" capacidad="Basico" />
+    <ciudad nombre="Medellín" departamento="Antioquia" capacidad="Basic" producto="Cafe" />
+</results>
