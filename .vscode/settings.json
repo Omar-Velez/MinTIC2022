@@ -1,0 +1,5 @@
+{
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.explorerKind": "external",
+    "terminal.integrated.defaultProfile.linux": "/usr/bin/zsh"
+}
