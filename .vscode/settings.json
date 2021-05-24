@@ -1,5 +1,6 @@
 {
     "terminal.integrated.fontFamily": "MesloLGS NF",
     "terminal.explorerKind": "external",
-    "terminal.integrated.defaultProfile.linux": "/usr/bin/zsh"
+    "terminal.integrated.defaultProfile.linux": "/usr/bin/zsh",
+    "python.pythonPath": "/bin/python"
 }

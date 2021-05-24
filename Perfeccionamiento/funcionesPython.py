@@ -4,18 +4,19 @@ Como parámetro de entrada recibe una lista de numero de enteros. La lista debe 
 La función devuelve dos listas de la forma: lista1=[Numeros pares], lista2=[numeros impares]
 '''
 # declaramos la lista de numeros y las listas que recibiran el listado de enteros e impares
-lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-lista1,lista2=[],[]
+lista = [1, 2, 3, 4]
+lista1=[]
+lista2=[]
 
 # funcion que recibe una lista y regresa dos listas
 def separar(listado):
     lista1=[]
     lista2=[]
-    for numero in range(0, len(listado)):
-        if listado[numero] % 2 == 0:
-            lista1.append(listado[numero])
+    for posicion in range(0, len(listado)):
+        if listado[posicion] % 2 == 0:
+            lista1.append(listado[posicion])
         else:
-            lista2.append(listado[numero])
+            lista2.append(listado[posicion])
     return lista1,lista2
 
 # llamamos la funcion que retorna 2 listas
