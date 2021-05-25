@@ -1,26 +1,22 @@
-salarioBase=2355255
-horasExtras=2 
-bonificacion=True
+lista_datos = [int(d) for d in input().split()]
 
-"1000000 0 0"
-"2355255 2 1"
+salarioBase=lista_datos[0]
+horasExtras=lista_datos[1]
+bonificacion=lista_datos[2]
 
-"1000000.0 890000.0"
-"2594747.2 2309325.0"
-
+# El valor de una hora de trabajo normal se obtiene dividiendo el salario base sobre 171.
 horaTrabajo=salarioBase/171
-liqHorasExtras=(horaTrabajo*horasExtras)*.17
+
+# Las horas extras se liquidan con un recargo del 17% sobre el valor de una hora normal.
+liqHorasExtras=horaTrabajo*0.17
+
+# Debido a buen desempeño de un empleado la empresa ocasionalmente otorga bonificaciones de 8.8% del salario base.
 liqBonificacion=0
-if bonificacion:
-    liqBonificacion=salarioBase*1.088
+if bonificacion==1:
+    liqBonificacion=salarioBase*.088
 
-salarioTotalsindescuentos=(salarioBase+liqHorasExtras+liqBonificacion)*.89
-print(salarioTotalsindescuentos)
+# El salario total antes de descuentos se calcula como la suma del salario base, más el valor de las horas extras,
+# más las bonificaciones (si las hay).
+salarioTotal=round((salarioBase+(liqHorasExtras*horasExtras)+liqBonificacion),1)
 
-'''El valor de una hora de trabajo normal se obtiene dividiendo el salario base sobre 171.
-Las horas extras se liquidan con un recargo del 17% sobre el valor de una hora normal.
-Debido a buen desempeño de un empleado la empresa ocasionalmente otorga bonificaciones de 8.8% del salario base.
-El salario total antes de descuentos se calcula como la suma del salario base, más el valor de las horas extras, más las bonificaciones (si las hay).
-Se descontará 5% del salario total antes de descuentos para el plan obligatorio de salud.
-Se descontará 5% del salario total antes de descuentos para el aporte a pensión.
-Se descontará 1% del salario total antes de descuentos para caja de compensación.'''
+print(salarioTotal,salarioTotal*0.89)
