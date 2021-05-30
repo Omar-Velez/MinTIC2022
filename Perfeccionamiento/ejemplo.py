@@ -1,4 +1,4 @@
-def ejemplo(parametro):
-    parametro("Hola Mundo")
+def ejemplo(funcion,argumento):
+    funcion(argumento)
 
-ejemplo(print)
+ejemplo(print,"Hola mundo")
